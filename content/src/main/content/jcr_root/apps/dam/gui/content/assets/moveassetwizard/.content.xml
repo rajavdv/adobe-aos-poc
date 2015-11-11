@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Assets"
+        sling:resourceType="granite/ui/components/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[granite.ui.foundation,granite.ui.foundation.admin,cq.gui.damadmin.moveassetwizard,cq.gui.damadmin.admin]"/>
+            <redirecttopreviouspage
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/commons/redirecttopreviouspage"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/page/body">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fit"/>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/form"
+                class="move-asset-wizard"
+                id="cq-damadmin-admin-moveasset-form">
+                <items jcr:primaryType="nt:unstructured">
+                    <renameStep
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Rename"
+                        sling:resourceType="granite/ui/components/foundation/container"
+                        class="cq-damadmin-admin-moveasset-rename">
+                        <items jcr:primaryType="nt:unstructured">
+                            <rename
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Rename"
+                                sling:resourceType="dam/gui/components/admin/moveassetwizard/rename"
+                                backlabel="Cancel"
+                                class="rename-items"
+                                title="Rename"
+                                wizardpagecallback="rename-items"/>
+                            <cancel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/hyperlink"
+                                class="foundation-wizard-control redirect-to-previous-page"
+                                foundation-wizard-control-action="cancel"
+                                text="Cancel"/>
+                            <next
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/button"
+                                class="foundation-wizard-control"
+                                disabled="{Boolean}false"
+                                foundation-wizard-control-action="next"
+                                text="Next"/>
+                        </items>
+                        <rendercondition
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/gui/components/admin/moveassetwizard/rename/rendercondition"/>
+                    </renameStep>
+                    <destinationStep
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Select Destination"
+                        sling:resourceType="granite/ui/components/foundation/container"
+                        rel="cq-damadmin-admin-moveasset-select-destination">
+                        <items jcr:primaryType="nt:unstructured">
+                            <destination
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/advancedselect"
+                                class="show-after-card-layout hide"
+                                foundation-mode-group="cq-damadmin-admin-moveasset-destination-container"
+                                foundation-validation-ui="none"
+                                rel="cq-damadmin-admin-moveasset-destination-container"
+                                selectionMode="single">
+                                <layout
+                                    jcr:primaryType="nt:unstructured"
+                                    name="foundation-layout-card"/>
+                                <toolbar
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/navigation"
+                                    class="content-header">
+                                    <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/endor/layouts/actionbar"/>
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <breadcrumbs
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="dam/gui/components/admin/wizard/breadcrumbs"
+                                            baseUrl="/mnt/overlay/dam/gui/content/assets/moveassetwizard.html"
+                                            contentPath="${requestPathInfo.suffix}"
+                                            rootPath="/content/dam"
+                                            rootTitle="Assets"
+                                            skipPreamble="{Boolean}true"/>
+                                    </items>
+                                </toolbar>
+                                <datasource
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/wizard/pagedatasource"
+                                    exclude="[dam:Asset]"
+                                    itemResourceType="dam/gui/components/admin/moveassetwizard/childasset"/>
+                            </destination>
+                            <prev
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/button"
+                                class="foundation-wizard-control"
+                                foundation-wizard-control-action="prev"
+                                text="Back">
+                                <rendercondition
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/moveassetwizard/granite/controlaction/rendercondition"
+                                    negate="{Boolean}true"
+                                    stepposition="first"/>
+                            </prev>
+                            <cancel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/hyperlink"
+                                class="foundation-wizard-control redirect-to-previous-page"
+                                foundation-wizard-control-action="cancel"
+                                text="Cancel">
+                                <rendercondition
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/moveassetwizard/granite/controlaction/rendercondition"
+                                    stepposition="first"/>
+                            </cancel>
+                            <next
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/button"
+                                class="foundation-wizard-control aem-assets-moveassetwizard-next"
+                                disabled="{Boolean}true"
+                                foundation-wizard-control-action="next"
+                                text="Next"/>
+                        </items>
+                    </destinationStep>
+                    <referencesStep
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Adjust / Republish"
+                        sling:resourceType="granite/ui/components/foundation/container"
+                        class="cq-damadmin-admin-moveasset-references">
+                        <items jcr:primaryType="nt:unstructured">
+                            <references
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dam/gui/components/admin/moveassetwizard/references"
+                                class="references"
+                                maxreferences="{Long}150"
+                                title="Adjust References"
+                                wizardpagecallback="references"/>
+                            <prev
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/button"
+                                class="foundation-wizard-control"
+                                foundation-wizard-control-action="prev"
+                                text="Back"/>
+                            <move
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/button"
+                                class="foundation-wizard-control"
+                                disabled="{Boolean}false"
+                                formId="cq-damadmin-admin-moveasset-form"
+                                foundation-wizard-control-action="next"
+                                text="Move"
+                                type="submit"/>
+                        </items>
+                    </referencesStep>
+                </items>
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dam/gui/components/admin/moveassetwizard/granite/wizard"/>
+            </content>
+        </body>
+    </jcr:content>
+</jcr:root>

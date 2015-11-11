@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Asset Unpublish Wizard"
+        sling:resourceType="granite/ui/components/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[coralui2,granite.ui.foundation,cq.siteadmin.admin,granite.ui.foundation.admin,dam.gui.admin.unpublishassetwizard]"
+                id="schedule"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/page/body">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fit"/>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/form"
+                class="activation-wizard hide-steps">
+                <items jcr:primaryType="nt:unstructured">
+                    <unpublish
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Unpublish"
+                        sling:resourceType="granite/ui/components/foundation/container"
+                        class="cq-siteadmin-admin-republish-references">
+                        <items jcr:primaryType="nt:unstructured">
+                            <fixedColumnContainer
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container"
+                                active="{Boolean}true">
+                                <layout
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                                <items jcr:primaryType="nt:unstructured">
+                                    <fixedColumn1
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/container"
+                                        id="references">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <references
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="dam/gui/components/admin/unpublishassetwizard"
+                                                replicationURL="/bin/replicate.json"
+                                                requestDeactivationWorkflow="/etc/workflow/models/request_for_deactivation/jcr:content/model"
+                                                scheduletDeactivationWorkflow="/etc/workflow/models/scheduled_deactivation/jcr:content/model"
+                                                workflowURL="/etc/workflow/instances"/>
+                                        </items>
+                                    </fixedColumn1>
+                                    <fixedColumn2
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/container"
+                                        id="schedule">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <schedule
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                                text="Scheduling the asset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <activationDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/datepicker"
+                                                        displayedFormat="YYYY-MM-DD HH:mm"
+                                                        fieldDescription="Leave empty to unpublish immediately."
+                                                        fieldLabel="Deactivation date"
+                                                        minDate="today"
+                                                        name="activationDate"
+                                                        type="datetime"/>
+                                                </items>
+                                            </schedule>
+                                        </items>
+                                    </fixedColumn2>
+                                </items>
+                            </fixedColumnContainer>
+                            <cancel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/hyperlink"
+                                class="foundation-wizard-control"
+                                foundation-wizard-control-action="cancel"
+                                href="/assets.html${requestPathInfo.suffix}"
+                                text="Cancel"/>
+                            <next
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/submit"
+                                class="foundation-wizard-control"
+                                disabled="{Boolean}false"
+                                foundation-wizard-control-action="next"
+                                text="Unpublish"/>
+                        </items>
+                    </unpublish>
+                </items>
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/wizard"/>
+            </content>
+        </body>
+    </jcr:content>
+    <rep:policy/>
+</jcr:root>

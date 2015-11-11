@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Assets | Asset Metadata"
+        sling:resourceType="granite/ui/components/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[granite.shared,dam.gui.metadataeditor,dam.gui.admin.util,cq.gui.damadmin.rating]"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/page/body">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/endor/layouts/page"/>
+            <rail
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/endor/navcolumns"
+                currentId="cq-assets"
+                srcPath="cq/core/content/nav"/>
+            <breadcrumbs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/endor/breadcrumbs"
+                baseUrl="/assets.html"
+                contentPath="${requestPathInfo.suffix}"
+                rootPath="/content/dam"
+                rootTitle="Assets"/>
+            <title
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/metadataeditor/endor/title"
+                title="Properties"/>
+            <header
+                jcr:primaryType="nt:unstructured"
+                srcPath="/mnt/overlay/cq/core/content/header"/>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container"
+                selfurl="/mnt/overlay/dam/gui/content/assets/metadataeditor.html">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/endor/layouts/content"/>
+                <aside
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                    <layout
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/endor/layouts/sidepanels"/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <viewerpreset
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            id="aem-assets-s7-rail-viewerpresets"
+                            path="/mnt/overlay/dam/gui/content/commons/sidepanels/viewerpreset"/>
+                    </items>
+                </aside>
+                <header
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                    <layout
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/layouts/mode"
+                        group="aem-assets-admin-properties"
+                        mode="${requestPathInfo.selectors[0] == &quot;edit&quot; ? &quot;edit&quot; : &quot;default&quot;}"/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <default
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/navigation">
+                            <layout
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/layouts/actionbar"/>
+                            <items jcr:primaryType="nt:unstructured">
+                                <edit
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                    foundation-mode-group="aem-assets-admin-properties"
+                                    foundation-mode-value="edit"
+                                    icon="icon-edit"
+                                    rel="foundation-mode-change"
+                                    text="Edit"
+                                    title="Edit">
+                                    <rendercondition
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/renderconditions/privilege"
+                                        path="${requestPathInfo.suffix}"
+                                        privileges="[jcr:modifyProperties]"/>
+                                </edit>
+                                <views
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/endor/actionbar/hyperlink"
+                                    href="#aem-asset-details-views"
+                                    icon="icon-view-on"
+                                    text="Views"
+                                    title="Views"
+                                    toggle="popover">
+                                    <layoutConfig
+                                        jcr:primaryType="nt:unstructured"
+                                        align="right"/>
+                                </views>
+                            </items>
+                        </default>
+                        <edit
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/navigation">
+                            <layout
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/layouts/actionbar"/>
+                            <items jcr:primaryType="nt:unstructured">
+                                <done
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                    icon="icon-check"
+                                    rel="aem-assets-admin-properties-submit"
+                                    text="Done"
+                                    title="Save">
+                                    <layoutConfig
+                                        jcr:primaryType="nt:unstructured"
+                                        align="right"/>
+                                </done>
+                                <cancel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                    foundation-mode-group="aem-assets-admin-properties"
+                                    foundation-mode-value="default"
+                                    icon="icon-close"
+                                    rel="foundation-mode-change cancel-metadata-edit"
+                                    text="Cancel"
+                                    title="Cancel">
+                                    <layoutConfig
+                                        jcr:primaryType="nt:unstructured"
+                                        align="right"/>
+                                </cancel>
+                            </items>
+                        </edit>
+                        <viewscontent
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            path="dam/gui/content/assets/assetpage/jcr:content/body/content/header/items/viewscontent"/>
+                        <viewerpresets
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/endor/actionbar/innerrailtoggle"
+                            class="viewerpreset hide"
+                            icon="icon-preview rail-colorpalette-viewerpresets"
+                            targetId="aem-assets-s7-rail-viewerpresets"
+                            text="Viewer Presets"
+                            title="Viewer Presets"/>
+                    </items>
+                </header>
+                <content
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+                        <redirecttopreviouspage
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/gui/components/admin/commons/redirecttopreviouspage"/>
+                        <metadataeditor
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/gui/components/admin/metadataeditor"
+                            formbasepath="dam/content/schemaeditors/forms"/>
+                        <col1
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/container"
+                            class="assets-properties-articles">
+                            <items jcr:primaryType="nt:unstructured">
+                                <childpages
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/pages"
+                                    datasourceResourceType="dam/gui/components/admin/metadataeditor/assetreferenced/datasource"
+                                    foundation-mode-group="aem-assets-admin-properties-childpages"
+                                    itemResourceType="dam/gui/components/admin/metadataeditor/assetreferenced/eachasset"
+                                    rel="aem-assets-admin-properties-childpages show-after-card-layout hide">
+                                    <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        default="card"
+                                        name="foundation-layout-card"/>
+                                    <header
+                                        jcr:primaryType="nt:unstructured"
+                                        class="card-asset"
+                                        moveable="{Boolean}true"
+                                        selectable="{Boolean}true">
+                                        <main
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/siteadmin/admin/pages/headers/deflt"
+                                            class="main"
+                                            title="TITLE"/>
+                                    </header>
+                                </childpages>
+                            </items>
+                        </col1>
+                        <col2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/gui/components/admin/propertiesform"
+                            class="active"
+                            rel="data-fields"/>
+                        <modalsuccess
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Asset(s) modified"
+                            sling:resourceType="dam/gui/components/admin/modal"
+                            action-button-class="coral-Button--primary aem-assets-metadata-edit-ack redirect-to-previous-page"
+                            action-button-text="OK"
+                            class="coral-Modal--success"
+                            id="aem-assets-metadataedit-success"/>
+                        <modalerror
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Asset(s) failed to modify"
+                            sling:resourceType="dam/gui/components/admin/modal"
+                            class="coral-Modal--error"
+                            dismiss-button-text="OK"
+                            id="aem-assets-metadataedit-error"/>
+                        <modalvalidationerror
+                            jcr:description="One or more required field(s) is/are empty."
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Error"
+                            sling:resourceType="dam/gui/components/admin/modal"
+                            class="coral-Modal--error"
+                            dismiss-button-text="OK"
+                            id="aem-assets-metadataedit-validationerror"/>
+                        <modalratingerror
+                            jcr:description="Error in rating the asset."
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Rating Failure"
+                            sling:resourceType="dam/gui/components/admin/modal"
+                            class="coral-Modal--error aem-assets-rating-error"
+                            dismiss-button-text="OK"
+                            id="aem-assets-rating-error"/>
+                        <contentpath
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/gui/components/admin/endor/contentpath"/>
+                    </items>
+                </content>
+            </content>
+        </body>
+    </jcr:content>
+</jcr:root>

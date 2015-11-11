@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Asset License Selection"
+        sling:resourceType="granite/ui/components/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[coralui2,granite.ui.foundation,granite.ui.foundation.admin,granite.shared,dam.gui.admin.drm]"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/page/favicon"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/page/body">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fit"/>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/form"
+                class="license-selection-wizard hide-steps"
+                method="post"
+                rel="cq-damadmin-admin-license-selction">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/wizard"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <copyrightmanagement
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Copyright Management"
+                        sling:resourceType="granite/ui/components/foundation/form/wizard/step"
+                        class="asset-view-license">
+                        <items jcr:primaryType="nt:unstructured">
+                            <col1
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container"
+                                class="assets-list">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <childpages
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="dam/gui/components/admin/pages"
+                                        datasourceResourceType="dam/gui/components/admin/drm/licensesource"
+                                        foundation-mode-group="cq-damadmin-admin-childpages"
+                                        itemResourceType="dam/gui/components/admin/drm/licensedassets"
+                                        rel="cq-damadmin-admin-childpages list drm-layout-list">
+                                        <layout
+                                            jcr:primaryType="nt:unstructured"
+                                            default="list"
+                                            name="foundation-layout-list"/>
+                                        <header
+                                            jcr:primaryType="nt:unstructured"
+                                            class="card-asset"
+                                            moveable="{Boolean}true"
+                                            selectable="{Boolean}true">
+                                            <main
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/siteadmin/admin/pages/headers/deflt"
+                                                class="main"
+                                                title="All Assets"/>
+                                        </header>
+                                    </childpages>
+                                </items>
+                            </col1>
+                            <col2
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container"
+                                class="license-field active">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <col1
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="dam/gui/components/admin/drm/licensefield"/>
+                                </items>
+                            </col2>
+                            <cancel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/hyperlink"
+                                class="foundation-wizard-control"
+                                foundation-wizard-control-action="cancel"
+                                text="Cancel"/>
+                            <add
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/button"
+                                class="foundation-wizard-control download"
+                                disabled="{Boolean}false"
+                                foundation-wizard-control-action="next"
+                                text="Download"/>
+                        </items>
+                    </copyrightmanagement>
+                </items>
+            </content>
+        </body>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:mixinTypes="[sling:VanityPath]"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Assets"
+        sling:resourceType="granite/ui/components/foundation/page"
+        sling:vanityOrder="{Long}291"
+        sling:vanityPath="/assets">
+        <head jcr:primaryType="nt:unstructured">
+            <contentchecker
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/page/contentchecker"/>
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <title
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/page/title"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[jquery,jquery-ui,granite.ui.foundation,granite.ui.foundation.admin,granite.shared,cq.gui.common.admin.timeline,cq.gui.damadmin.admin,cq.gui.annotation,dam.gui.admin.downloadasset,dam.gui.s7dam.downloadasset,cq.gui.siteadmin.activate,cq.gui.siteadmin.deactivate,cq.gui.damadmin.lightbox,cq.common.wcm,cq.siteadmin.admin.reorder,cq.gui.damadmin.rating,cq.listview.columns.personalization]"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/page/body">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/endor/layouts/page"/>
+            <rail
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/endor/navcolumns"
+                currentId="cq-assets"
+                srcPath="cq/core/content/nav"/>
+            <breadcrumbs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/endor/breadcrumbs"
+                baseUrl="/assets.html"
+                contentPath="${requestPathInfo.suffix}"
+                depthAdjustment="{Long}-1"
+                pageTitleTemplate="AEM Assets | {{title}}"
+                rootPageTitle="AEM Assets"
+                rootPath="/content/dam"
+                rootTitle="Assets"
+                src="/assets.html{+id}"
+                target=".cq-damadmin-admin-childpages"/>
+            <title
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/endor/title"
+                contentPath="${requestPathInfo.suffix}"
+                rootTitle="Assets"/>
+            <header
+                jcr:primaryType="nt:unstructured"
+                srcPath="/mnt/overlay/cq/core/content/header"/>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/endor/layouts/content"/>
+                <aside
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                    <layout
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/endor/layouts/sidepanels"/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <search
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            id="aem-assets-rail-search"
+                            path="/mnt/overlay/dam/gui/content/commons/sidepanels/search"/>
+                        <timeline
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            id="aem-assets-rail-timeline"
+                            path="/mnt/overlay/dam/gui/content/commons/sidepanels/timeline"/>
+                        <references
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            id="cq-rail-references"
+                            path="/mnt/overlay/dam/gui/content/commons/sidepanels/references"/>
+                    </items>
+                </aside>
+                <header
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dam/gui/components/admin/contentselector"
+                    assetscontentpath="/mnt/overlay/dam/gui/content/assets/jcr:content/body/assetscontent/header"
+                    assetscontentRT="granite/ui/components/foundation/container"
+                    subassetscontentpath="/mnt/overlay/dam/gui/content/assets/jcr:content/body/subassetscontent/header"
+                    subassetscontentRT="granite/ui/components/foundation/container"/>
+                <content
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dam/gui/components/admin/contentselector"
+                    assetscontentpath="/mnt/overlay/dam/gui/content/assets/jcr:content/body/assetscontent/content"
+                    assetscontentRT="granite/ui/components/foundation/container"
+                    subassetscontentpath="/mnt/overlay/dam/gui/content/assets/jcr:content/body/subassetscontent/content"
+                    subassetscontentRT="granite/ui/components/foundation/container"/>
+            </content>
+            <assetscontent/>
+            <subassetscontent/>
+        </body>
+        <mimeTypeLookup jcr:primaryType="nt:unstructured">
+            <Archive
+                jcr:description="ARCHIVE"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Archive"
+                mimetypes="TGZ,RAR,TAR,ZIP,APP,JAR,WAR,EAR,APK,RPM,DBM;"/>
+            <Document
+                jcr:description="DOCUMENT"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Document"
+                mimetypes="DOC,DOCX,ODT,PDF,HTML,RTF,TXT,XLS,XLSX,ODS,PPT,PPTX,ODP,INDD,PS,QXP,KEY,HTM,AI,EPUB,EPS,CSV;"/>
+            <Executable
+                jcr:description="EXECUTABLE"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Executable"
+                mimetypes="ZIP,EXE,AIR;"/>
+            <Image
+                jcr:description="IMAGE"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Image"
+                mimetypes="PNG,GIF,TIFF,JPEG,BMP,PNM,PGM,PBM,PPM,PSD,JPG,DXF,DNG,TIF,PJPEG,PTIFF,MAX,JP2,NRW,CR2,NEF,ARI,CRW,DCS,DRF,3FR,ARW,BAY,CAP,DCR,EIP,ERF,FFF,IIQ,K25,KDC,MDC,MEF,MOS,MRW,OBM,ORF,PEF,PTX,PXM,R3D,RAF,RWZ,SR2,SRF,SRW,X3F;"/>
+            <Multimedia
+                jcr:description="MULTIMEDIA"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Multimedia"
+                mimetypes="AAC,MIDI,3GP,MP3,M4A,MPG,OGA,OGG,RA,WAV,WMA,DVI,FLV,M4V,MPEG,OGV,MOV,WMV,SWF,FLA,AIF,MXF,MP4;"/>
+        </mimeTypeLookup>
+    </jcr:content>
+    <downloadasset
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="dam/gui/components/admin/downloadasset"
+        id="downloadasset"
+        rel="cq-damadmin-admin-actions-download"/>
+    <haslicense
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="dam/gui/components/admin/drm/haslicense"
+        id="haslicense"
+        rel="cq-damadmin-admin-actions-haslicense"/>
+    <collectionspage
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/contsys">
+        <actionbarcontainer
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                default="card"
+                name="foundation-layout-mode"/>
+            <default
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/toolbar"
+                class="mode-default">
+                <togglerail
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/hyperlink"
+                    href="#rail"
+                    icon="icon-rail"
+                    text="Toggle Rail"
+                    title="Toggle Rail"
+                    toggle="slide"/>
+                <divider
+                    jcr:primaryType="nt:unstructured"
+                    divider="{Boolean}true"/>
+                <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/text"
+                    align="center"
+                    text="Collections"/>
+                <togglelayout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/admin/layouttoggle"
+                    align="right"
+                    target=".cq-siteadmin-admin-childpages">
+                    <cards
+                        jcr:primaryType="nt:unstructured"
+                        icon="icon-cards"
+                        text="Card View"
+                        title="View as Cards">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            columnWidth="{Long}220"
+                            marginBottom="{Long}10"
+                            marginLeft="{Long}10"
+                            marginRight="{Long}10"
+                            marginTop="{Long}10"
+                            name="foundation-layout-card"/>
+                    </cards>
+                    <list
+                        jcr:primaryType="nt:unstructured"
+                        icon="icon-list"
+                        text="List View"
+                        title="View as List">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            name="foundation-layout-list"/>
+                    </list>
+                </togglelayout>
+            </default>
+        </actionbarcontainer>
+        <userCollections
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="cq/gui/components/siteadmin/admin/pages"
+            datasourceResourceType="dam/gui/components/admin/pagedatasource"
+            itemResourceType="dam/gui/components/admin/collectionsasset"
+            mode-group="cq-siteadmin-admin-childpages"
+            rel="cq-siteadmin-admin-childpages">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                columnWidth="{Long}220"
+                marginBottom="{Long}10"
+                marginLeft="{Long}10"
+                marginRight="{Long}10"
+                marginTop="{Long}10"
+                name="foundation-layout-card"/>
+        </userCollections>
+    </collectionspage>
+    <assetedit
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="dam/gui/components/admin/assetedit"/>
+    <csvedit
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/contsys">
+        <items jcr:primaryType="nt:unstructured">
+            <actionbarcontainer
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container"
+                class="content-header">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    group="cq-siteadmin-admin-bulkproperties"
+                    name="foundation-layout-mode"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <default
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/admin/toolbar"
+                        class="mode-default">
+                        <items jcr:primaryType="nt:unstructured">
+                            <back
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                hideText="{Boolean}true"
+                                href="/assetdetails.html${requestPathInfo.suffix}"
+                                icon="icon-chevron-left"
+                                rel="dam-csv-edit-back"
+                                text="&lt;"
+                                title="Back"/>
+                            <divider
+                                jcr:primaryType="nt:unstructured"
+                                divider="{Boolean}true"/>
+                            <save
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                hideText="{Boolean}true"
+                                icon="icon-save"
+                                rel="csv-save"
+                                text="Save"
+                                title="Save"/>
+                            <selectrow
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                hideText="{Boolean}true"
+                                icon="icon-checkCircle"
+                                rel="csv-selectrow"
+                                text="Select Rows"
+                                title="Select Rows"/>
+                            <addrow
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                hideText="{Boolean}true"
+                                icon="icon-add"
+                                rel="csv-addrow"
+                                text="Add Row"
+                                title="Add Row"/>
+                            <deleterow
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                hideText="{Boolean}true"
+                                icon="icon-delete"
+                                rel="csv-deleterow"
+                                text="Delete Row"
+                                title="Delete Row"/>
+                            <rownum
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                hideText="{Boolean}true"
+                                icon="icon-textNumbered"
+                                rel="csv-rownum"
+                                text="Toggle Row Numbers"
+                                title="Toggle Row Numbers"/>
+                        </items>
+                    </default>
+                </items>
+            </actionbarcontainer>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/csv/edit"
+                class="asset-edit foundation-collection-container content-container card mode-selection"/>
+        </items>
+    </csvedit>
+    <renditions
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/contsys">
+        <items jcr:primaryType="nt:unstructured">
+            <actionbarcontainer
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container"
+                class="content-header">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    group="cq-siteadmin-admin-bulkproperties"
+                    name="foundation-layout-mode"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <default
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/navigation"
+                        class="mode-default">
+                        <items jcr:primaryType="nt:unstructured">
+                            <search
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/innerrailtoggle"
+                                icon="icon-search"
+                                targetId="aem-assets-rail-search"
+                                text="Search"
+                                title="Search"/>
+                            <timeline
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/innerrailtoggle"
+                                class="cq-common-admin-timeline-activator cq-common-admin-navigationpanel-changemode"
+                                foundation-mode-group="cq-damadmin-admin-childpages"
+                                foundation-mode-value="selection"
+                                icon="icon-clock"
+                                targetId="aem-assets-rail-timeline"
+                                text="Timeline"
+                                title="Timeline"/>
+                            <renditions
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/innerrailtoggle"
+                                icon="icon-color-palette rail-colorpalette-renditions"
+                                targetId="aem-assets-rail-renditions"
+                                text="Renditions"
+                                title="Renditions"/>
+                            <viewerpresets
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/innerrailtoggle"
+                                class="viewerpreset hide"
+                                hideText="{Boolean}true"
+                                icon="icon-preview rail-colorpalette-viewerpresets"
+                                targetId="aem-assets-s7-rail-viewerpresets"
+                                text="Viewer Presets"
+                                title="Viewer Presets"/>
+                            <downloadasset
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/button"
+                                class="foundation-collection-action"
+                                hideText="{Boolean}true"
+                                icon="icon-download"
+                                rel="cq-damadmin-admin-actions-download-activator"
+                                text="Download"
+                                title="Download">
+                                <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    haslicense-href="/mnt/overlay/dam/gui/content/assets/haslicense.html"
+                                    href="/mnt/overlay/dam/gui/content/assets/downloadasset.html"
+                                    license-href="/mnt/overlay/dam/gui/content/assets/licensecheck.html"
+                                    toggle="modal"/>
+                            </downloadasset>
+                            <deleterendition
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/hyperlink"
+                                hideText="{Boolean}true"
+                                href="#deleteasset-renditions"
+                                icon="icon-delete"
+                                rel="cq-damadmin-admin-rendition-delete-activator"
+                                text="Delete Rendition"
+                                title="Delete Rendition"
+                                toggle="modal"/>
+                            <views
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/endor/actionbar/hyperlink"
+                                href="#aem-asset-details-views"
+                                icon="icon-view-on"
+                                title="Views"
+                                toggle="popover">
+                                <layoutConfig
+                                    jcr:primaryType="nt:unstructured"
+                                    align="right"/>
+                            </views>
+                        </items>
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/endor/layouts/actionbar"/>
+                    </default>
+                    <viewscontent
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/include"
+                        path="dam/gui/content/assets/assetpage/jcr:content/body/content/header/items/viewscontent"/>
+                </items>
+            </actionbarcontainer>
+            <renditiondetail
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container"
+                class="rendition-detail">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    name="foundation-layout-inline"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <col1
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container"
+                        class="rendition-detail-view">
+                        <items jcr:primaryType="nt:unstructured">
+                            <content
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dam/gui/components/admin/renditions"
+                                class="content-container rendition-canvas"
+                                excludedRenditionsFromDelete="[original]"/>
+                        </items>
+                    </col1>
+                    <col2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/container"
+                        class="rendition-detail-metadata">
+                        <items jcr:primaryType="nt:unstructured">
+                            <metadata
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dam/gui/components/admin/renditions/renditionmetadata">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <mimetype
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/mimeType"
+                                        title="Type"/>
+                                    <height
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/height"
+                                        title="Height"/>
+                                    <audioBitrate
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/audioBitrate"
+                                        title="Audio Bitrate"/>
+                                    <audioChannels
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/audioChannels"
+                                        title="Audio Channels"/>
+                                    <audioCodec
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/audioCodec"
+                                        title="Audio Codec"/>
+                                    <audioSamplingRate
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/audioSamplingRate"
+                                        title="Audio Sampling Rate"/>
+                                    <extension
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/extension"
+                                        title="Extension"/>
+                                    <htmlType
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/htmlType"
+                                        title="Html Type"/>
+                                    <videoBitrate
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/videoBitrate"
+                                        title="Video Bitrate"/>
+                                    <videoCodec
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/videoCodec"
+                                        title="Video Codec"/>
+                                    <videoBitrateTolerance
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/videoBitrateTolerance"
+                                        title="Video Bitrate Tolerance "/>
+                                    <videoFrameRate
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/videoFrameRate"
+                                        title="Video Frame Rate"/>
+                                    <width
+                                        jcr:primaryType="nt:unstructured"
+                                        propertyPath="jcr:content/metadata/heightwidth"
+                                        title="Width"/>
+                                </items>
+                            </metadata>
+                        </items>
+                    </col2>
+                </items>
+            </renditiondetail>
+            <contentpath
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/admin/endor/contentpath"/>
+        </items>
+    </renditions>
+    <collectiondock
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="dam/gui/components/admin/collections/rendercollectiondock"/>
+    <versioning jcr:primaryType="nt:unstructured">
+        <createversion
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/admin/timeline/assettimeline/feeds/versions/createversion"/>
+        <revertversion jcr:primaryType="nt:unstructured"/>
+    </versioning>
+    <editors jcr:primaryType="nt:unstructured">
+        <image
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/admin/assetedit/imageedit"
+            mimetypes="[image/png,image/jpg,image/jpeg,image/gif,image/bmp]"
+            renditionWidth="{Long}1280"/>
+        <csv
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/admin/assetedit/csvedit"
+            mimetypes="[text/csv]"/>
+        <text
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/admin/assetedit/textedit"
+            mimetypes="[text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword]"/>
+        <spinset
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/s7dam/sets/spinset/spinsetedit"
+            mimetypes="[Multipart/Related; type=application/x-SpinSet]"/>
+        <imageset
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/s7dam/sets/imageset/imagesetedit"
+            mimetypes="[Multipart/Related; type=application/x-ImageSet]"/>
+        <mixedmediaset
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/s7dam/sets/mixedmediaset/mixedmediasetedit"
+            mimetypes="[Multipart/Related; type=application/x-MixedMediaSet]"/>
+        <defaulteditor
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/admin/assetedit/defaulteditor"
+            mimetypes="[.*]"/>
+    </editors>
+    <lightboxassets
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="dam/gui/components/admin/collections/lightboxassets"/>
+    <lightboxassetcount
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="dam/gui/components/admin/collections/lightboxassetcount"/>
+    <miller jcr:primaryType="nt:unstructured">
+        <columnview
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/columnview"
+                itemResourceType="dam/gui/components/admin/layouts/column/assetcolumnitem"
+                multiselect="{Boolean}true"
+                src="/mnt/overlay/dam/gui/content/assets/miller/columnview{.offset,limit}.html${granite:encodeURIPath(requestPathInfo.suffix)}"/>
+            <datasource
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dam/gui/components/commons/datasources/assetsdatasource"
+                itemResourceType="dam/gui/components/admin/childasset"
+                limit="${empty requestPathInfo.selectors[1] ? &quot;20&quot; : requestPathInfo.selectors[1]}"
+                offset="${requestPathInfo.selectors[0]}"/>
+        </columnview>
+        <previewcolumn
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dam/gui/components/admin/layouts/column/assetcolumnpreview"
+            path="${requestPathInfo.suffix}"/>
+    </miller>
+    <annotate/>
+    <assetpage/>
+    <ccsharewizard/>
+    <foldersharewizard/>
+    <licensecheck/>
+    <metadataeditor/>
+    <metadataeditorcollection/>
+    <moveassetwizard/>
+    <publishassetwizard/>
+    <publishsetwizard/>
+    <unpublishassetwizard/>
+</jcr:root>

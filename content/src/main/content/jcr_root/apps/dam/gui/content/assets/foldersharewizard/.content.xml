@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Assets Folder Settings Wizard"
+        sling:resourceType="granite/ui/components/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[granite.ui.foundation,cq.gui.damadmin.foldershare,dam.gui.admin.manualthumbnail]"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/page/body">
+            <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fit"/>
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/form"
+                action="/content/dam"
+                class="foundation-form content-container mode-default"
+                id="folder-settings-form"
+                method="post">
+                <layout
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/layouts/wizard"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <foldersettings
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Folder Settings"
+                        sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <settings
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dam/gui/components/admin/foldershare/foldersharelayout"
+                                id="foldersharesettings"
+                                redirect="/assets.html">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <left
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/contsys"
+                                        id="foldersharesettings-left">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <grid
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/container"
+                                                class="grid">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <selecteditem
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="dam/gui/components/admin/foldershare/resourceimage"
+                                                        class="share-resource-image grid"/>
+                                                    <cover
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/fileupload"
+                                                        autoStart="{Boolean}false"
+                                                        id="thumbnail-upload-button"
+                                                        mimeTypes="[image/png,image/jpeg,image/gif]"
+                                                        multiple="{Boolean}false"
+                                                        name="coverImage"
+                                                        renderReadOnly="{Boolean}true"
+                                                        sizeLimit="100000000"
+                                                        title="Change Thumbnail"
+                                                        uploadUrl="will_be_replaced"
+                                                        useHTML5="{Boolean}false"/>
+                                                    <removemanualthumbnail
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                        id="removemanualthumbnail"
+                                                        name="removemanualthumbnail"
+                                                        value="false"/>
+                                                </items>
+                                            </grid>
+                                        </items>
+                                    </left>
+                                    <right
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/contsys"
+                                        id="foldersharesettings-right">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <container
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <folderproperties
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="dam/gui/components/admin/foldershare/folderproperties"/>
+                                                    <titlefield
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                        class="block"
+                                                        fieldLabel="Folder Title"
+                                                        id="foldertitle"
+                                                        name="title"/>
+                                                    <orderable
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                        id="orderable"
+                                                        name="jcr:primaryType"
+                                                        text="Reorder-able in List View"
+                                                        value="sling:OrderedFolder"/>
+                                                    <jcrtype
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                        name="jcr:primaryType"/>
+                                                    <metadataschema
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                        fieldLabel="Metadata Schema"
+                                                        id="metadata-schema-name"
+                                                        name="metadataSchema"
+                                                        renderReadOnly="{Boolean}true"/>
+                                                    <processingprofile
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                        fieldLabel="Processing Profile"
+                                                        id="processing-profile-name"
+                                                        name="processingProfile"
+                                                        renderReadOnly="{Boolean}true"/>
+                                                    <foldermembers
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="dam/gui/components/admin/foldershare/foldermembers"/>
+                                                    <adduser
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/container"
+                                                        id="foldersharesettings-adduser">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <addusertext
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/foundation/text"
+                                                                text="Add User"/>
+                                                            <userpicker
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="dam/gui/components/admin/collections/collectionsettings/userpicker"
+                                                                id="foldershare-settings-userpicker"
+                                                                name="assignee"
+                                                                userGroups="[everyone]"/>
+                                                            <memberrole
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                                                emptyText="Editor"
+                                                                id="member-role">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <editor
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/foundation/form/option"
+                                                                        text="Editor"
+                                                                        value="editor"/>
+                                                                    <owner
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/foundation/form/option"
+                                                                        text="Owner"
+                                                                        value="owner"/>
+                                                                    <viewer
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/foundation/form/option"
+                                                                        text="Viewer"
+                                                                        value="viewer"/>
+                                                                </items>
+                                                            </memberrole>
+                                                            <add
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/foundation/collection/action"
+                                                                class="block"
+                                                                disabled="true"
+                                                                id="add-user"
+                                                                text="Add"
+                                                                title="Add"
+                                                                variant="[primary]">
+                                                                <data
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    href.uritemplate="/mnt/overlay/dam/gui/content/assets/foldersharewizard/jcr:content/body/content/items/foldersettings/items/settings/items/right/items/container/items/adduser/items/userpicker.userlist.html{?query,searchById}"/>
+                                                            </add>
+                                                        </items>
+                                                    </adduser>
+                                                    <operation
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                        name=":operation"
+                                                        value="dam.share.folder"/>
+                                                    <charset
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                        name="_charset_"
+                                                        value="utf-8"/>
+                                                    <contentPath
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="/libs/dam/gui/components/admin/foldershare/contentpath"/>
+                                                    <titleReadFrom
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/hidden"
+                                                        name="titleReadFrom"
+                                                        value="contentNode"/>
+                                                </items>
+                                            </container>
+                                        </items>
+                                    </right>
+                                </items>
+                            </settings>
+                            <cancel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/hyperlink"
+                                class="foundation-wizard-control"
+                                foundation-wizard-control-action="cancel"
+                                href="/assets.html"
+                                text="Cancel"/>
+                            <save
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/submit"
+                                class="foundation-wizard-control primary flexwizard-control"
+                                foundation-wizard-control-action="next"
+                                text="Save"/>
+                        </items>
+                    </foldersettings>
+                </items>
+            </content>
+        </body>
+    </jcr:content>
+</jcr:root>
